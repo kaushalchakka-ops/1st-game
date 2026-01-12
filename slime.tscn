@@ -1,56 +1,65 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhyctoxdkruw4"]
+[gd_scene load_steps=10 format=3 uid="uid://bhyctoxdkruw4"]
 
+[ext_resource type="Script" uid="uid://dg8tpc70gfgva" path="res://scripts/slime.gd" id="1_4l1t8"]
 [ext_resource type="Texture2D" uid="uid://cvxlgmveuihst" path="res://assets/sprites/slime_green.png" id="1_5jc4t"]
 [ext_resource type="PackedScene" uid="uid://dqgvg7ek30774" path="res://killzone.tscn" id="2_4l1t8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ppcr1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jc4t"]
 atlas = ExtResource("1_5jc4t")
 region = Rect2(0, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jayke"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l1t8"]
 atlas = ExtResource("1_5jc4t")
 region = Rect2(24, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2002g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppcr1"]
 atlas = ExtResource("1_5jc4t")
 region = Rect2(48, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bratd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jayke"]
 atlas = ExtResource("1_5jc4t")
 region = Rect2(72, 24, 24, 24)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5b0gg"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2002g"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jc4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l1t8")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ppcr1")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jayke")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2002g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bratd")
 }],
 "loop": true,
 "name": &"default",
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_da4t2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bratd"]
 size = Vector2(10, 13)
 
 [node name="slime" type="Node2D"]
+script = ExtResource("1_4l1t8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_5b0gg")
+sprite_frames = SubResource("SpriteFrames_2002g")
 autoplay = "default"
-frame_progress = 0.69074667
 
-[node name="killzone" parent="." instance=ExtResource("2_4l1t8")]
+[node name="killzone" parent="AnimatedSprite2D" instance=ExtResource("2_4l1t8")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.5)
-shape = SubResource("RectangleShape2D_da4t2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/killzone"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_bratd")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(-10, 0)
