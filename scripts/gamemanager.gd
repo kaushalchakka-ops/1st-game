@@ -11,6 +11,11 @@ func visi():
 	if invipotion > 0 :
 		glass.visible=true
 
+func invisi():
+	invipotion-=1
+	print(invipotion)
+	if invipotion == 0 :
+		glass.visible=false
 	
 func add_point():
 	score+=1
