@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://elst0xn32iil"]
+[gd_scene load_steps=41 format=3 uid="uid://elst0xn32iil"]
 
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://ckwm7iqr41hap" path="res://assets/sprites/world_tileset.png" id="1_e2o6t"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://crft7xjpq21ha" path="res://assets/fonts/PixelOperator8.ttf" id="2_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://cugbu4w0rbbx5" path="res://platform.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://cqj02r06wjq66" path="res://scripts/checkpoint.gd" id="3_lc2xo"]
+[ext_resource type="Texture2D" uid="uid://bsmb8tavw6qej" path="res://assets/sprites/lever.png" id="4_80cx4"]
 [ext_resource type="Script" uid="uid://b4iak7xu7hiwg" path="res://scripts/CheckpointManager.gd" id="4_215e1"]
 [ext_resource type="PackedScene" uid="uid://dwod1c8k5hdse" path="res://coin.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dqgvg7ek30774" path="res://killzone.tscn" id="5_7jktm"]
@@ -187,7 +188,43 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_feb5d")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lc2xo"]
-size = Vector2(41, 42)
+size = Vector2(19.5, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8heu"]
+atlas = ExtResource("4_80cx4")
+region = Rect2(0, 0, 245, 218)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvswv"]
+atlas = ExtResource("4_80cx4")
+region = Rect2(245, 0, 245, 218)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boyg6"]
+atlas = ExtResource("4_80cx4")
+region = Rect2(490, 0, 245, 218)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e36ub"]
+atlas = ExtResource("4_80cx4")
+region = Rect2(735, 0, 245, 218)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7sc4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8heu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvswv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boyg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e36ub")
+}],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ryrav"]
 distance = -115.0
@@ -567,8 +604,16 @@ position = Vector2(-174, -437)
 script = ExtResource("3_lc2xo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoints/checkpoint"]
-position = Vector2(8, -18)
+position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_lc2xo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="checkpoints/checkpoint"]
+position = Vector2(13.692261, 0.6846888)
+scale = Vector2(0.07598155, 0.07050189)
+sprite_frames = SubResource("SpriteFrames_7sc4i")
+animation = &"on"
+frame = 3
+frame_progress = 1.0
 
 [node name="checkpoint3" type="Area2D" parent="checkpoints"]
 visibility_layer = 2
@@ -597,7 +642,7 @@ collision_mask = 3
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("1_80nbo")]
 unique_name_in_owner = true
-position = Vector2(-465, -89)
+position = Vector2(-113, -404)
 collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="player"]
@@ -648,7 +693,7 @@ position = Vector2(-513, -966)
 position = Vector2(-625, -1011)
 
 [node name="coin6" parent="coins" instance=ExtResource("4_fc0e3")]
-position = Vector2(-171, -438)
+position = Vector2(-194, -437)
 
 [node name="coin17" parent="coins" instance=ExtResource("4_fc0e3")]
 position = Vector2(-435, -902)

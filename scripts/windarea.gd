@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var wind_force: float = 800.0 
+@export var wind_force: float = 400.0 
 @export var wind_direction: Vector2 = Vector2.RIGHT 
 
 func _ready():
