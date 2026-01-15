@@ -13,6 +13,7 @@ script = ExtResource("1_b8qbv")
 position = Vector2(-1.1368684e-13, -1)
 scale = Vector2(0.040609132, 0.039340097)
 texture = ExtResource("1_fvmfx")
+region_rect = Rect2(0, 0, 394, 394)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -188,6 +189,20 @@ texture = ExtResource("1_fvmfx")
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
 position = Vector2(-64, -33.25)
 shape = SubResource("RectangleShape2D_ykn3o")
+
+[node name="Sprite2D21" type="Sprite2D" parent="."]
+position = Vector2(259, -147.00002)
+scale = Vector2(0.08739523, 0.03906961)
+texture = ExtResource("1_fvmfx")
+region_enabled = true
+region_rect = Rect2(0, 0, 396.7025, 122.1118)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D21"]
+position = Vector2(-6.892863, 134.78946)
+scale = Vector2(1.00946, 1)
+texture = ExtResource("1_fvmfx")
+region_enabled = true
+region_rect = Rect2(0, 270.27875, 387.0395, 123.72125)
 
 [connection signal="visibility_changed" from="CollisionShape2D" to="." method="_on_collision_shape_2d_visibility_changed"]
 [connection signal="visibility_changed" from="CollisionShape2D18" to="." method="_on_collision_shape_2d_visibility_changed"]
