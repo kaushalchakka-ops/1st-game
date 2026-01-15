@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dapp11km38yhc"]
+
+[ext_resource type="Texture2D" uid="uid://cxhcdf3m7xlrw" path="res://assets/sprites/1425323229.webp" id="1_6ny6v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7f7r"]
+size = Vector2(32, 9)
+
+[node name="glass_platform" type="AnimatableBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v7f7r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.015626192, -2.3984375)
+scale = Vector2(0.081297584, 0.040309872)
+texture = ExtResource("1_6ny6v")
+region_enabled = true
+region_rect = Rect2(0, 4.5, 394, 119)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 2.1250002)
+scale = Vector2(0.08355091, 0.07012195)
+texture = ExtResource("1_6ny6v")
+region_enabled = true
+region_rect = Rect2(6, 311.5, 383, 82.5)

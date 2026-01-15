@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://blfsn7ke6usos"]
+[gd_scene load_steps=3 format=3 uid="uid://blfsn7ke6usos"]
 
-[ext_resource type="Script" uid="uid://s7yuoitonlqx" path="res://scripts/glass.gd" id="1_b8qbv"]
 [ext_resource type="Texture2D" uid="uid://cxhcdf3m7xlrw" path="res://assets/sprites/1425323229.webp" id="1_fvmfx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykn3o"]
 size = Vector2(16, 16)
 
 [node name="glass" type="AnimatableBody2D"]
-script = ExtResource("1_b8qbv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.1368684e-13, -1)
@@ -16,7 +14,7 @@ texture = ExtResource("1_fvmfx")
 region_rect = Rect2(0, 0, 394, 394)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_ykn3o")
 
 [node name="Sprite2D18" type="Sprite2D" parent="."]
@@ -124,7 +122,7 @@ scale = Vector2(0.040609132, 0.039340097)
 texture = ExtResource("1_fvmfx")
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="."]
-position = Vector2(33, 14.749999)
+position = Vector2(34, 15)
 shape = SubResource("RectangleShape2D_ykn3o")
 
 [node name="Sprite2D10" type="Sprite2D" parent="."]
@@ -189,20 +187,6 @@ texture = ExtResource("1_fvmfx")
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
 position = Vector2(-64, -33.25)
 shape = SubResource("RectangleShape2D_ykn3o")
-
-[node name="Sprite2D21" type="Sprite2D" parent="."]
-position = Vector2(259, -147.00002)
-scale = Vector2(0.08739523, 0.03906961)
-texture = ExtResource("1_fvmfx")
-region_enabled = true
-region_rect = Rect2(0, 0, 396.7025, 122.1118)
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D21"]
-position = Vector2(-6.892863, 134.78946)
-scale = Vector2(1.00946, 1)
-texture = ExtResource("1_fvmfx")
-region_enabled = true
-region_rect = Rect2(0, 270.27875, 387.0395, 123.72125)
 
 [connection signal="visibility_changed" from="CollisionShape2D" to="." method="_on_collision_shape_2d_visibility_changed"]
 [connection signal="visibility_changed" from="CollisionShape2D18" to="." method="_on_collision_shape_2d_visibility_changed"]
