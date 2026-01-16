@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctkk3qbxu30d3"]
+
+[ext_resource type="Script" uid="uid://5whoa6mrp6q1" path="res://scripts/ice_block.gd" id="1_2prkr"]
+[ext_resource type="Texture2D" uid="uid://b6rcs758uhcfg" path="res://assets/sprites/crumbled ice.png" id="1_u58vv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75cto"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(0, 0, 364, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js4tf"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(364, 0, 364, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xka5v"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(728, 0, 364, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt52h"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(1092, 0, 364, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imely"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(0, 436, 364, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1y0o"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(364, 436, 364, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sydji"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(728, 436, 364, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocmcg"]
+atlas = ExtResource("1_u58vv")
+region = Rect2(1092, 436, 364, 436)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wt52h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75cto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js4tf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xka5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt52h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imely")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1y0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sydji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocmcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75cto")
+}],
+"loop": false,
+"name": &"cracking",
+"speed": 9.99
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30c32"]
+size = Vector2(95, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eufgq"]
+size = Vector2(92, 98)
+
+[node name="IceBlock" type="Area2D"]
+script = ExtResource("1_2prkr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.0000014, 4.5474735e-13)
+scale = Vector2(0.33203125, 0.31445313)
+sprite_frames = SubResource("SpriteFrames_wt52h")
+animation = &"cracking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -17)
+shape = SubResource("RectangleShape2D_30c32")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(114, 151)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-112, -168)
+shape = SubResource("RectangleShape2D_eufgq")
+
+[node name="BreakTimer" type="Timer" parent="."]
