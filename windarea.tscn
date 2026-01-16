@@ -3,14 +3,13 @@
 [ext_resource type="Script" uid="uid://slmrmmttcttc" path="res://scripts/windarea.gd" id="1_el0b4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fss3l"]
-size = Vector2(511.875, 185.25)
+size = Vector2(513.96875, 154.8125)
 
 [node name="windarea" type="Area2D"]
 script = ExtResource("1_el0b4")
-wind_force = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7, -1)
+position = Vector2(-1.015625, 11.40625)
 shape = SubResource("RectangleShape2D_fss3l")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

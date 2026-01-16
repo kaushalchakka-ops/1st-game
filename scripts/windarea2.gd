@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var wind_force: float = 200.0 
-@export var wind_direction: Vector2 = Vector2.RIGHT
+@export var wind_direction: Vector2 = Vector2.LEFT
 
 func _ready():
 	# Connect signals to tell the player they are in the wind
