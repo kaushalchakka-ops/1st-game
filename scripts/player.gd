@@ -11,6 +11,7 @@ var is_dead := false
 var is_rolling := false 
 var is_in_wind := false    # Tracks if currently in a WindArea 
 var is_on_ice := false     # Tracks if currently on Ice
+var is_swinging := false
 var start_position: Vector2 
 
 # --- NODES ---
@@ -19,14 +20,13 @@ var start_position: Vector2
 
 func _ready():
 	start_position = global_position 
-	add_to_group("player") # Required for checkpoints and ice areas to find the player 
+	add_to_group("player") # Required for checkpoints and ice areas to find the player [cite: 4]
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return 
 
- 	# --- MANUAL RESPAWN ---
-	# Ensure "manual_respawn" is mapped to the 'R' key in your Input Map
+	# --- MANUAL RESPAWN ---
 	if Input.is_action_just_pressed("respawn"):
 		respawn()
 
@@ -34,18 +34,27 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta 
 
-	# 2. Handle Roll Input
+	# 2. Handle State Check
+	if is_swinging:
+		velocity = Vector2.ZERO # Stop normal movement while on rope 
+		animated_sprite_2d.play("jump") # Play a hanging/air pose 
+		return # Skip the rest of the movement code 
+
+	# 3. Handle Roll Input
 	if Input.is_action_just_pressed("roll") and is_on_floor() and not is_rolling:
 		start_roll() 
-
-	# 3. Movement Logic
+	
+	# 4. Movement Logic
 	if is_rolling:
 		var roll_dir = -1 if animated_sprite_2d.flip_h else 1 
 		velocity.x = roll_dir * ROLL_SPEED 
 	else:
 		# Handle Jump
-		if Input.is_action_just_pressed("jump") and is_on_floor():
+		if Input.is_action_just_pressed("jump") and is_on_floor(): 
 			velocity.y = JUMP_VELOCITY 
+			# FIX: Restart animation from first frame
+			animated_sprite_2d.play("jump")
+			animated_sprite_2d.frame = 0
 
 		var direction := Input.get_axis("left", "right") 
 
@@ -57,23 +66,23 @@ func _physics_process(delta: float) -> void:
 		elif is_on_floor():
 			animated_sprite_2d.play("idle") 
 		
-		if not is_on_floor():
+		if not is_on_floor() and not is_swinging:
 			animated_sprite_2d.play("jump") 
 
 		# --- SMART PHYSICS LOGIC (ICE, WIND, & NORMAL) ---
 		if direction:
 			if is_on_ice:
-				# SLIPPERY ACCELERATION: Takes time to reach full speed on ice
+				# SLIPPERY ACCELERATION
 				velocity.x = move_toward(velocity.x, direction * SPEED, 4.0)
 			else:
-				# NORMAL ACCELERATION: Snappy movement on regular ground 
+				# NORMAL ACCELERATION
 				velocity.x = move_toward(velocity.x, direction * SPEED, 20.0) 
 		else:
 			if is_on_ice or is_in_wind:
-				# LOW FRICTION: Slips in the direction of motion while on ice/wind 
+				# LOW FRICTION: Slips while on ice/wind 
 				velocity.x = move_toward(velocity.x, 0, 2.0)
 			else:
-				# HIGH FRICTION: Stops instantly on normal ground (No slipping) 
+				# HIGH FRICTION: Stops instantly 
 				velocity.x = move_toward(velocity.x, 0, SPEED) 
 
 	move_and_slide() 
@@ -92,7 +101,8 @@ func respawn():
 	if is_dead: return 
 	is_dead = true 
 	is_rolling = false 
-	velocity = Vector2.ZERO # Stop all movement upon death 
+	is_swinging = false
+	velocity = Vector2.ZERO 
 	
 	# Move to the position stored in CheckpointManager 
 	if CheckpointManager.checkpoint_position != Vector2.ZERO: 
@@ -100,6 +110,6 @@ func respawn():
 	else:
 		global_position = start_position 
 		
-	global_position.y -= 20 # Spawn slightly above the ground to avoid clipping 
+	global_position.y -= 20 
 	await get_tree().physics_frame 
 	is_dead = false

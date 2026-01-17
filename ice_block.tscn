@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctkk3qbxu30d3"]
+[gd_scene load_steps=13 format=3 uid="uid://ctkk3qbxu30d3"]
 
 [ext_resource type="Script" uid="uid://5whoa6mrp6q1" path="res://scripts/ice_block.gd" id="1_2prkr"]
 [ext_resource type="Texture2D" uid="uid://b6rcs758uhcfg" path="res://assets/sprites/crumbled ice.png" id="1_u58vv"]
@@ -71,29 +71,28 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30c32"]
-size = Vector2(95, 99)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eufgq"]
-size = Vector2(92, 98)
+size = Vector2(15.75, 14.25)
 
 [node name="IceBlock" type="Area2D"]
 script = ExtResource("1_2prkr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(5.0000014, 4.5474735e-13)
-scale = Vector2(0.33203125, 0.31445313)
+position = Vector2(5, 5.0000005)
+scale = Vector2(0.05278669, 0.050458718)
 sprite_frames = SubResource("SpriteFrames_wt52h")
 animation = &"cracking"
+frame = 8
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, -17)
+position = Vector2(3, 1)
 shape = SubResource("RectangleShape2D_30c32")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(114, 151)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-112, -168)
-shape = SubResource("RectangleShape2D_eufgq")
+position = Vector2(-111, -149)
+shape = SubResource("RectangleShape2D_30c32")
 
 [node name="BreakTimer" type="Timer" parent="."]

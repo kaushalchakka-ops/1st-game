@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcf7veoly0kym"]
+
+[ext_resource type="Texture2D" uid="uid://c3mqht4w28lk7" path="res://assets/sprites/new_tile_sprite/spring_.png" id="1_is03c"]
+[ext_resource type="Script" uid="uid://c0guj3c28tpwe" path="res://scripts/swing.gd" id="2_v36oi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wefpt"]
+radius = 6.0
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n60ud"]
+radius = 6.0827627
+
+[node name="swing" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../RigidBody2D")
+bias = 0.071
+softness = 0.4
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(1, 0)
+mass = 18.957
+inertia = 500.0
+can_sleep = false
+linear_damp = 3.0
+angular_damp = 15.0
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_is03c")
+region_enabled = true
+region_rect = Rect2(165.46683, 207.19307, 11.586578, 35.569336)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CapsuleShape2D_wefpt")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+script = ExtResource("2_v36oi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+light_mask = 3
+position = Vector2(0, 17)
+shape = SubResource("CircleShape2D_n60ud")
+
+[node name="GrabPoint" type="Marker2D" parent="RigidBody2D/Area2D"]
+position = Vector2(0, 17)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn540t8fn8v34"]
+
+[ext_resource type="PackedScene" uid="uid://ctkk3qbxu30d3" path="res://ice_block.tscn" id="1_vjr2n"]
+
+[node name="ice_block _map" type="Node2D"]
+
+[node name="IceBlock" parent="." instance=ExtResource("1_vjr2n")]
+
+[node name="IceBlock3" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(82, -41)
+
+[node name="IceBlock4" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(125, -42)
+
+[node name="IceBlock5" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(178, -21)
+
+[node name="IceBlock6" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(226, -43)
+
+[node name="IceBlock7" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(264, -3)
+
+[node name="IceBlock8" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(320, -33)
+
+[node name="IceBlock9" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(375, -39)
+
+[node name="IceBlock2" parent="." instance=ExtResource("1_vjr2n")]
+position = Vector2(39, -21)
