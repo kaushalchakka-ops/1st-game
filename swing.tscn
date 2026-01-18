@@ -1,48 +1,81 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcf7veoly0kym"]
+[gd_scene load_steps=11 format=3 uid="uid://dcf7veoly0kym"]
 
-[ext_resource type="Texture2D" uid="uid://c3mqht4w28lk7" path="res://assets/sprites/new_tile_sprite/spring_.png" id="1_is03c"]
-[ext_resource type="Script" uid="uid://c0guj3c28tpwe" path="res://scripts/swing.gd" id="2_v36oi"]
+[ext_resource type="Script" uid="uid://dhxorr3pm83fd" path="res://scripts/eldernpc.gd" id="1_v36oi"]
+[ext_resource type="Texture2D" uid="uid://cm05t5pa6ocil" path="res://assets/sprites/bandit_.png" id="2_wefpt"]
+[ext_resource type="FontFile" uid="uid://crft7xjpq21ha" path="res://assets/fonts/PixelOperator8.ttf" id="3_n60ud"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wefpt"]
-radius = 6.0
-height = 38.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_mucue"]
+atlas = ExtResource("2_wefpt")
+region = Rect2(0, 36, 32, 36)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n60ud"]
-radius = 6.0827627
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk3h4"]
+atlas = ExtResource("2_wefpt")
+region = Rect2(32, 36, 32, 36)
 
-[node name="swing" type="StaticBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqc2i"]
+atlas = ExtResource("2_wefpt")
+region = Rect2(64, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtxmq"]
+atlas = ExtResource("2_wefpt")
+region = Rect2(96, 36, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mmv8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mucue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk3h4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqc2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtxmq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_142ts"]
+radius = 5.0990195
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v36oi"]
+bg_color = Color(0, 0, 0, 0.7137255)
+corner_detail = 5
+
+[node name="elder" type="Area2D"]
+script = ExtResource("1_v36oi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mmv8e")
+frame_progress = 0.8566805
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_142ts")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-node_a = NodePath("..")
-node_b = NodePath("../RigidBody2D")
-bias = 0.071
-softness = 0.4
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -67.0
+offset_top = -51.0
+offset_right = 233.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_v36oi")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(1, 0)
-mass = 18.957
-inertia = 500.0
-can_sleep = false
-linear_damp = 3.0
-angular_damp = 15.0
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("1_is03c")
-region_enabled = true
-region_rect = Rect2(165.46683, 207.19307, 11.586578, 35.569336)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("CapsuleShape2D_wefpt")
-
-[node name="Area2D" type="Area2D" parent="RigidBody2D"]
-script = ExtResource("2_v36oi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
-light_mask = 3
-position = Vector2(0, 17)
-shape = SubResource("CircleShape2D_n60ud")
-
-[node name="GrabPoint" type="Marker2D" parent="RigidBody2D/Area2D"]
-position = Vector2(0, 17)
+[node name="Label" type="Label" parent="PanelContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_n60ud")
+theme_override_font_sizes/font_size = 10
+text = "..."
+horizontal_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
