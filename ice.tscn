@@ -6,6 +6,7 @@
 size = Vector2(870.24994, 217)
 
 [node name="ice" type="Area2D"]
+position = Vector2(47, 4)
 script = ExtResource("1_mifcs")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]

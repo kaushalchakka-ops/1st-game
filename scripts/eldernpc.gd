@@ -29,7 +29,7 @@ func _input(_event):
 func speak():
 	if not has_given_weapon:
 		label.text = "
-		Take this blade! Use Left Click to attack."
+		Take this blade! Use Left Click to attack.The enemy has 3 hearts"
 		
 		# TYPEWRITER EFFECT: Gradually show characters
 		label.visible_characters = 0

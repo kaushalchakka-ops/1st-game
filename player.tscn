@@ -266,7 +266,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(8, 20)
+size = Vector2(10, 20)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 5
@@ -287,8 +287,10 @@ frame = 3
 frame_progress = 1.0
 
 [node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(11, -5)
+position = Vector2(12, -5)
 shape = SubResource("RectangleShape2D_onrkg")
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

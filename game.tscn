@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://dqgvg7ek30774" path="res://killzone.tscn" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bhyctoxdkruw4" path="res://slime.tscn" id="6_ryrav"]
 [ext_resource type="Script" uid="uid://ctwbnsjise8xq" path="res://scripts/windarea2.gd" id="7_e8heu"]
-[ext_resource type="PackedScene" uid="uid://dcf7veoly0kym" path="res://swing.tscn" id="8_f1jbl"]
 [ext_resource type="PackedScene" uid="uid://blfsn7ke6usos" path="res://glass.tscn" id="9_vef74"]
 [ext_resource type="PackedScene" uid="uid://dbdmefrenkpal" path="res://potion.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://jtwn0fe1dr3c" path="res://noninvi.tscn" id="11_mfdv2"]
@@ -24,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://de6kbsug6wckw" path="res://ice.tscn" id="18_rvswv"]
 [ext_resource type="Texture2D" uid="uid://lhh6fvlcp8x3" path="res://assets/sprites/ice.png" id="19_boyg6"]
 [ext_resource type="PackedScene" uid="uid://bn540t8fn8v34" path="res://ice_block__map.tscn" id="23_qhcbd"]
+[ext_resource type="PackedScene" uid="uid://nckeebywoijs" path="res://chapter_2.tscn" id="24_f1jbl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("1_e2o6t")
@@ -1815,6 +1815,21 @@ _data = {
 &"RESET": SubResource("Animation_215e1")
 }
 
+[sub_resource type="Animation" id="Animation_vaj68"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(70, -2301)]
+}
+
 [sub_resource type="Animation" id="Animation_f1jbl"]
 resource_name = "new_animation"
 length = 2.0
@@ -1830,21 +1845,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(70, -2301), Vector2(70, -2301), Vector2(70, -2632), Vector2(70, -2632)]
-}
-
-[sub_resource type="Animation" id="Animation_vaj68"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(70, -2301)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i2p71"]
@@ -2186,7 +2186,7 @@ frame_progress = 1.0
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("1_80nbo")]
 unique_name_in_owner = true
-position = Vector2(-473, -91)
+position = Vector2(-451, -2822)
 collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="player"]
@@ -2721,8 +2721,8 @@ shape = SubResource("RectangleShape2D_boyg6")
 [node name="ice_block _map" parent="icelevel" instance=ExtResource("23_qhcbd")]
 position = Vector2(1045, -2745)
 
-[node name="Sprite2D" parent="." instance=ExtResource("8_f1jbl")]
-position = Vector2(1265, -2969)
+[node name="chapter_2" parent="." instance=ExtResource("24_f1jbl")]
+position = Vector2(-101, -2606)
 
 [connection signal="body_entered" from="checkpoints/checkpoint" to="checkpoints/checkpoint" method="_on_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint2" to="checkpoints/checkpoint2" method="_on_body_entered"]

@@ -129,3 +129,9 @@ func respawn():
 	await get_tree().physics_frame
 	set_physics_process(true)
 	is_dead = false
+func _on_attack_area_area_entered(area: Area2D) -> void:
+	# Check if the area we hit belongs to an enemy
+	if area.name == "Hurtbox":
+		var enemy = area.get_parent()
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(1) # Deals 1 damage per hit
