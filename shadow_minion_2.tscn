@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn6j3a7o7orgw"]
+
+[ext_resource type="PackedScene" uid="uid://dvwnyrlldlgdl" path="res://shadow_minion.tscn" id="1_gp04n"]
+[ext_resource type="Script" uid="uid://cjk6efoxo1xkr" path="res://scripts/enemy.gd" id="2_crkn8"]
+
+[node name="ShadowMinion_2" groups=["enemies"] instance=ExtResource("1_gp04n")]
+script = ExtResource("2_crkn8")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visibility_layer = 2
+position = Vector2(-2, -17.5)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://elst0xn32iil"]
+[gd_scene load_steps=58 format=3 uid="uid://elst0xn32iil"]
 
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://ckwm7iqr41hap" path="res://assets/sprites/world_tileset.png" id="1_e2o6t"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://ctwbnsjise8xq" path="res://scripts/windarea2.gd" id="7_e8heu"]
 [ext_resource type="PackedScene" uid="uid://blfsn7ke6usos" path="res://glass.tscn" id="9_vef74"]
 [ext_resource type="PackedScene" uid="uid://dbdmefrenkpal" path="res://potion.tscn" id="10_hve3p"]
-[ext_resource type="PackedScene" uid="uid://jtwn0fe1dr3c" path="res://noninvi.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://dapp11km38yhc" path="res://glass_platform.tscn" id="14_215e1"]
 [ext_resource type="PackedScene" uid="uid://cljfu33u720wh" path="res://windarea.tscn" id="15_7sc4i"]
 [ext_resource type="PackedScene" uid="uid://de6kbsug6wckw" path="res://ice.tscn" id="18_rvswv"]
@@ -2067,10 +2066,10 @@ theme_override_fonts/font = ExtResource("2_j5wjh")
 text = "R:To respawn"
 
 [node name="Label11" type="Label" parent="labels"]
-offset_left = -453.0
-offset_top = -1998.0
-offset_right = -351.0
-offset_bottom = -1944.0
+offset_left = -426.0
+offset_top = -2005.0
+offset_right = -324.0
+offset_bottom = -1951.0
 theme_override_fonts/font = ExtResource("2_j5wjh")
 text = "LEVEL 4:
 WINDY
@@ -2184,10 +2183,9 @@ animation = &"on"
 frame = 3
 frame_progress = 1.0
 
-[node name="player" parent="." groups=["player"] instance=ExtResource("1_80nbo")]
+[node name="player" parent="." instance=ExtResource("1_80nbo")]
 unique_name_in_owner = true
-position = Vector2(-451, -2822)
-collision_layer = 3
+position = Vector2(-394, -2653)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(8, -4)
@@ -2382,10 +2380,7 @@ visible = false
 position = Vector2(-113, -1412)
 
 [node name="potion" parent="glass_Level" instance=ExtResource("10_hve3p")]
-position = Vector2(-38, -1552)
-
-[node name="noninvi" parent="glass_Level" instance=ExtResource("11_mfdv2")]
-position = Vector2(92, -1624)
+position = Vector2(-94, -1042)
 
 [node name="glass_platform" parent="glass_Level" instance=ExtResource("14_215e1")]
 visible = false
@@ -2722,7 +2717,7 @@ shape = SubResource("RectangleShape2D_boyg6")
 position = Vector2(1045, -2745)
 
 [node name="chapter_2" parent="." instance=ExtResource("24_f1jbl")]
-position = Vector2(-101, -2606)
+position = Vector2(-607, -2606)
 
 [connection signal="body_entered" from="checkpoints/checkpoint" to="checkpoints/checkpoint" method="_on_body_entered"]
 [connection signal="body_entered" from="checkpoints/checkpoint2" to="checkpoints/checkpoint2" method="_on_body_entered"]

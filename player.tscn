@@ -268,9 +268,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(10, 20)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
-collision_layer = 2
+collision_layer = 3
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -278,13 +278,11 @@ position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_1jxqw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4, -12)
+position = Vector2(4, -12.000001)
 scale = Vector2(0.93749994, 0.93869597)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"attack"
+animation = &"jump"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(0, -6)

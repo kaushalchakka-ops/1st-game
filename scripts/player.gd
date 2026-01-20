@@ -135,3 +135,6 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 		var enemy = area.get_parent()
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(1) # Deals 1 damage per hit
+func take_damage():
+	# You can add a 'hit' animation here later
+	respawn() # Teleports player back to the checkpoint

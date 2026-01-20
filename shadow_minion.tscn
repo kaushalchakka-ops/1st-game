@@ -112,9 +112,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vqud"]
-size = Vector2(20, 30)
+size = Vector2(25, 33)
 
-[node name="ShadowMinion" type="CharacterBody2D"]
+[node name="ShadowMinion" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_c8771")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -125,7 +125,10 @@ animation = &"hit"
 autoplay = "idle"
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-2, -17)
 shape = SubResource("RectangleShape2D_4vqud")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
