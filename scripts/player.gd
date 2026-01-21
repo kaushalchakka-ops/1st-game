@@ -20,12 +20,18 @@ var start_position: Vector2
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var attack_area: Area2D = $AttackArea 
 
+#func _ready():
+	#start_position = global_position 
+	#add_to_group("player")
+	#if attack_area:
+		#attack_area.monitoring = false 
 func _ready():
-	start_position = global_position 
 	add_to_group("player")
-	if attack_area:
-		attack_area.monitoring = false 
-
+	start_position = global_position # Save the original editor position [cite: 5]
+	
+	# If a mode was selected in the menu, teleport there immediately
+	if CheckpointManager.checkpoint_position != Vector2.ZERO:
+		global_position = CheckpointManager.checkpoint_position
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return 
@@ -138,3 +144,19 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 func take_damage():
 	# You can add a 'hit' animation here later
 	respawn() # Teleports player back to the checkpoint
+# Add these to your variable section
+var current_character = "Knight"
+
+func swap_character():
+	CheckpointManager.current_character_index += 1
+	if CheckpointManager.current_character_index >= CheckpointManager.unlocked_characters.size():
+		CheckpointManager.current_character_index = 0
+
+	var char_name = CheckpointManager.unlocked_characters[
+		CheckpointManager.current_character_index
+	]
+
+	print("Unlocked:", CheckpointManager.unlocked_characters)
+	print("Character Swapped to:", char_name)
+
+	animated_sprite_2d.play(char_name + "_idle")
