@@ -237,8 +237,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_khis8")
 }],
-"loop": true,
-"name": &"Spearman_attack",
+"loop": false,
+"name": &"Spearmanattack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -279,7 +279,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ieltc")
 }],
 "loop": true,
-"name": &"Spearman_idle",
+"name": &"Spearmanidle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -302,7 +302,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_76oay")
 }],
 "loop": true,
-"name": &"Spearman_run",
+"name": &"Spearmanrun",
 "speed": 5.0
 }, {
 "frames": [{
@@ -446,7 +446,7 @@ shape = SubResource("CircleShape2D_1jxqw")
 position = Vector2(1.0000004, -11)
 scale = Vector2(1.0070311, 0.9551145)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"Spearman_idle"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="AttackArea" type="Area2D" parent="."]

@@ -27,23 +27,26 @@ func _input(_event):
 		speak()
 
 func speak():
-	if not has_given_weapon:
-		label.text = "Hero, your blade is too short. Take this spear for better reach!"
-		
-		# Typewriter effect
-		label.visible_characters = 0
-		var tween = create_tween()
-		tween.tween_property(label, "visible_characters", label.text.length(), 1.0)
-		
-		# 1. Unlock Spearman in the global manager
-		if not CheckpointManager.unlocked_characters.has("Spearman"):
-			CheckpointManager.unlocked_characters.append("Spearman")
-		
-		# 2. Get the player and trigger the swap logic
-		var player = get_tree().get_first_node_in_group("player")
-		if player:
-			player.can_attack = true # Unlocks combat
-			if player.has_method("swap_character"):
-				player.swap_character() # Swaps to the Spearman unit
-		
-		has_given_weapon = true
+	if has_given_weapon:
+		return
+
+	label.text = "
+	Now you can attack! Press left click to attack and defeat the 3 enemies"
+
+	label.visible_characters = 0
+
+	var tween := get_tree().create_tween()
+	tween.tween_property(
+		label,
+		"visible_characters",
+		label.text.length(),
+		1.0
+	)
+
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.can_attack = true
+		if player.has_method("swap_character"):
+			player.swap_character()
+
+	has_given_weapon = true

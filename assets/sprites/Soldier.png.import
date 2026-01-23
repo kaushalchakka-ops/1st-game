@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7iwkhix3f4vk"
-path="res://.godot/imported/thorn_player.png-7669f42a1844d177e18ef826b40f5620.ctex"
+uid="uid://bs6wcnccishxw"
+path="res://.godot/imported/Soldier.png-662bc37a6eb56d72c3d8d13cf67de994.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/thorn_player.png"
-dest_files=["res://.godot/imported/thorn_player.png-7669f42a1844d177e18ef826b40f5620.ctex"]
+source_file="res://assets/sprites/Soldier.png"
+dest_files=["res://.godot/imported/Soldier.png-662bc37a6eb56d72c3d8d13cf67de994.ctex"]
 
 [params]
 

@@ -19,12 +19,27 @@ var start_position: Vector2
 # --- NODES ---
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var attack_area: Area2D = $AttackArea 
+@onready var collision_shape_2d: CollisionShape2D = $AttackArea/CollisionShape2D
 
 #func _ready():
 	#start_position = global_position 
 	#add_to_group("player")
 	#if attack_area:
 		#attack_area.monitoring = false 
+var form := ""
+
+func play_anim(anim: String):
+	$AnimatedSprite2D.play(form  + anim)
+
+func transform_to_spearman():
+	form = "Spearman"
+	play_anim("idle")
+	collision_shape_2d.scale=Vector2(3,1)
+
+func transform_to_normal():
+	form = ""
+	play_anim("idle")
+	
 func _ready():
 	add_to_group("player")
 	start_position = global_position # Save the original editor position [cite: 5]
@@ -35,6 +50,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return 
+	if(form==""):
+		animated_sprite_2d.scale = Vector2(1,1)
 
 	# --- MANUAL RESPAWN ---
 	if Input.is_action_just_pressed("respawn"):
@@ -74,8 +91,12 @@ func handle_movement():
 	# Jump Logic
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY 
-		animated_sprite_2d.play("jump")
-
+		if(form=="Spearman"):
+			animated_sprite_2d.scale = Vector2(0.25, 0.25)
+			animated_sprite_2d.position=Vector2(0,-21)
+			animated_sprite_2d.play(form+"idle")
+		else:
+			animated_sprite_2d.play("jump")
 	var direction := Input.get_axis("left", "right") 
 
 	# Sprite Orientation & Animations
@@ -85,12 +106,20 @@ func handle_movement():
 			attack_area.scale.x = -1 if direction < 0 else 1
 		
 		if is_on_floor():
-			animated_sprite_2d.play("run") 
+			if(form=="Spearman"): 
+				animated_sprite_2d.scale = Vector2(0.25, 0.25)
+				animated_sprite_2d.position=Vector2(0,-13)
+			animated_sprite_2d.play(form+"run")
+
+
 	elif is_on_floor():
-		animated_sprite_2d.play("idle") 
+		if(form=="Spearman"): 
+			animated_sprite_2d.scale = Vector2(0.25, 0.25)
+			animated_sprite_2d.position=Vector2(0,-21)
+		animated_sprite_2d.play(form+"idle") 
 	
-	if not is_on_floor() and not is_swinging:
-		animated_sprite_2d.play("jump") 
+	#if not is_on_floor() and not is_swinging:
+		#animated_sprite_2d.play("jump") 
 
 	# Physics (Ice / Wind / Friction)
 	var accel = 4.0 if is_on_ice else 20.0
@@ -100,12 +129,15 @@ func handle_movement():
 		velocity.x = move_toward(velocity.x, direction * SPEED, accel)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction)
-
+var attack=false
 func perform_attack():
+	if(form=="Spearman"):
+		animated_sprite_2d.scale = Vector2(0.25, 0.25)
+		animated_sprite_2d.position=Vector2(0,22)
 	is_attacking = true
 	velocity.x = 0 # Stop movement during the swing
-	animated_sprite_2d.play("attack")
-	
+	animated_sprite_2d.play(form+"attack")
+	attack=true
 	if attack_area:
 		attack_area.monitoring = true
 	
@@ -118,7 +150,12 @@ func perform_attack():
 
 func start_roll():
 	is_rolling = true 
-	animated_sprite_2d.play("roll") 
+	if(form=="Spearman"):
+		animated_sprite_2d.scale = Vector2(0.25, 0.25)
+		animated_sprite_2d.position=Vector2(0,-21)
+		animated_sprite_2d.play(form+"idle")
+	else:
+		animated_sprite_2d.play("roll") 
 	await get_tree().create_timer(0.5).timeout 
 	is_rolling = false 
 
@@ -137,26 +174,14 @@ func respawn():
 	is_dead = false
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	# Check if the area we hit belongs to an enemy
-	if area.name == "Hurtbox":
-		var enemy = area.get_parent()
-		if enemy.has_method("take_damage"):
-			enemy.take_damage(1) # Deals 1 damage per hit
+	if attack==true:
+		if area.name == "Hurtbox":
+			var enemy = area.get_parent()
+			if enemy.has_method("take_damage"):
+				enemy.take_damage(1) # Deals 1 damage per hit
+			attack=false
 func take_damage():
 	# You can add a 'hit' animation here later
 	respawn() # Teleports player back to the checkpoint
 # Add these to your variable section
 var current_character = "Knight"
-
-func swap_character():
-	CheckpointManager.current_character_index += 1
-	if CheckpointManager.current_character_index >= CheckpointManager.unlocked_characters.size():
-		CheckpointManager.current_character_index = 0
-
-	var char_name = CheckpointManager.unlocked_characters[
-		CheckpointManager.current_character_index
-	]
-
-	print("Unlocked:", CheckpointManager.unlocked_characters)
-	print("Character Swapped to:", char_name)
-
-	animated_sprite_2d.play(char_name + "_idle")
