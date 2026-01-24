@@ -35,11 +35,11 @@ func _input(_event):
 
 func speak():
 		label.text = "
-		Hero, your blade is too short. Take this spear for better reach!Your character have been upggraded"
+		Hero, your character has been upgraded that means you have got a healthbar with 3 hearts"
 		
 		# Typewriter effect
 		label.visible_characters = 0
 		var tween = create_tween()
 		tween.tween_property(label, "visible_characters", label.text.length(), 1.0)
 		if player_ref:
-			player_ref.transform_to_spearman()
+			player_ref.enable_heart()

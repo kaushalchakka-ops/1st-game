@@ -14,6 +14,7 @@ var can_attack := false     # Unlocked by the Elder NPC
 var is_in_wind := false    
 var is_on_ice := false     
 var is_swinging := false
+var is_defending=false
 var start_position: Vector2
 
 # --- NODES ---
@@ -21,11 +22,6 @@ var start_position: Vector2
 @onready var attack_area: Area2D = $AttackArea 
 @onready var collision_shape_2d: CollisionShape2D = $AttackArea/CollisionShape2D
 
-#func _ready():
-	#start_position = global_position 
-	#add_to_group("player")
-	#if attack_area:
-		#attack_area.monitoring = false 
 var form := ""
 
 func play_anim(anim: String):
@@ -35,6 +31,9 @@ func transform_to_spearman():
 	form = "Spearman"
 	play_anim("idle")
 	collision_shape_2d.scale=Vector2(3,1)
+
+func transform_to_defender():
+	form="Defender"
 
 func transform_to_normal():
 	form = ""
@@ -52,7 +51,6 @@ func _physics_process(delta: float) -> void:
 		return 
 	if(form==""):
 		animated_sprite_2d.scale = Vector2(1,1)
-
 	# --- MANUAL RESPAWN ---
 	if Input.is_action_just_pressed("respawn"):
 		respawn()
@@ -95,6 +93,10 @@ func handle_movement():
 			animated_sprite_2d.scale = Vector2(0.25, 0.25)
 			animated_sprite_2d.position=Vector2(0,-21)
 			animated_sprite_2d.play(form+"idle")
+		if(form=="Defender"):
+			animated_sprite_2d.scale=Vector2(0.25,0.25)
+			animated_sprite_2d.position=Vector2(0,-9)
+			animated_sprite_2d.play(form+"idle")
 		else:
 			animated_sprite_2d.play("jump")
 	var direction := Input.get_axis("left", "right") 
@@ -109,6 +111,9 @@ func handle_movement():
 			if(form=="Spearman"): 
 				animated_sprite_2d.scale = Vector2(0.25, 0.25)
 				animated_sprite_2d.position=Vector2(0,-13)
+			if(form=="Defender"):
+				animated_sprite_2d.scale=Vector2(0.25,0.25)
+				animated_sprite_2d.position=Vector2(0,-9)
 			animated_sprite_2d.play(form+"run")
 
 
@@ -116,7 +121,20 @@ func handle_movement():
 		if(form=="Spearman"): 
 			animated_sprite_2d.scale = Vector2(0.25, 0.25)
 			animated_sprite_2d.position=Vector2(0,-21)
-		animated_sprite_2d.play(form+"idle") 
+		if(form=="Defender") and is_defending==false:
+			animated_sprite_2d.scale=Vector2(0.25,0.25)
+			animated_sprite_2d.position=Vector2(0,-9)
+		if Input.is_action_pressed("defend") and(form=="Defender"):
+			is_defending = true
+			animated_sprite_2d.scale=Vector2(0.25,0.25)
+			animated_sprite_2d.position=Vector2(0,-9)
+			animated_sprite_2d.play("Defenderdefend")
+			$CollisionShape2D.disabled=true
+			return
+		else:
+			is_defending = false
+		animated_sprite_2d.play(form+"idle")
+		$CollisionShape2D.disabled=false
 	
 	#if not is_on_floor() and not is_swinging:
 		#animated_sprite_2d.play("jump") 
@@ -134,6 +152,9 @@ func perform_attack():
 	if(form=="Spearman"):
 		animated_sprite_2d.scale = Vector2(0.25, 0.25)
 		animated_sprite_2d.position=Vector2(0,22)
+	if(form=="Defender"):
+		animated_sprite_2d.scale=Vector2(0.25,0.25)
+		animated_sprite_2d.position=Vector2(0,-7)
 	is_attacking = true
 	velocity.x = 0 # Stop movement during the swing
 	animated_sprite_2d.play(form+"attack")
@@ -147,12 +168,15 @@ func perform_attack():
 	if attack_area:
 		attack_area.monitoring = false
 	is_attacking = false
-
 func start_roll():
 	is_rolling = true 
 	if(form=="Spearman"):
 		animated_sprite_2d.scale = Vector2(0.25, 0.25)
 		animated_sprite_2d.position=Vector2(0,-21)
+		animated_sprite_2d.play(form+"idle")
+	if(form=="Defender"):
+		animated_sprite_2d.scale=Vector2(0.25,0.25)
+		animated_sprite_2d.position=Vector2(0,-9)
 		animated_sprite_2d.play(form+"idle")
 	else:
 		animated_sprite_2d.play("roll") 
@@ -180,8 +204,48 @@ func _on_attack_area_area_entered(area: Area2D) -> void:
 			if enemy.has_method("take_damage"):
 				enemy.take_damage(1) # Deals 1 damage per hit
 			attack=false
+
 func take_damage():
 	# You can add a 'hit' animation here later
 	respawn() # Teleports player back to the checkpoint
 # Add these to your variable section
 var current_character = "Knight"
+var play_health=3
+var hearts=false
+func enable_heart():
+	hearts=true
+	if play_health==3:
+		$Hearts0.visible=true
+		$Hearts1.visible=true
+		$Hearts2.visible=true
+func heart_visibile():
+	if play_health==0:
+		play_health=3
+		$Hearts0.visible=true
+		$Hearts1.visible=true
+		$Hearts2.visible=true
+		respawn()
+	if play_health==3:
+		$Hearts0.visible=true
+		$Hearts1.visible=true
+		$Hearts2.visible=true
+	if play_health==2:
+		$Hearts0.visible=true
+		$Hearts1.visible=true
+		$Hearts2.visible=false
+	elif play_health==1:
+		$Hearts0.visible=true
+		$Hearts1.visible=false
+		$Hearts2.visible=false
+func player_damage():
+	if is_defending==false:
+		if hearts==true:
+			play_health-=1
+			heart_visibile()
+		else:
+			respawn()
+	
+func new_heart():
+	if play_health<3:
+		play_health+=1
+		heart_visibile()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhcsk71cb7urs"
-path="res://.godot/imported/thorn_player - Copy.png-51e8b8987872c1e85699eb38875ac7f0.ctex"
+uid="uid://hcd38ogr0in4"
+path="res://.godot/imported/Warrior_Run.png-28acd853461f131a01d6c6f9e8090ca0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/thorn_player - Copy.png"
-dest_files=["res://.godot/imported/thorn_player - Copy.png-51e8b8987872c1e85699eb38875ac7f0.ctex"]
+source_file="res://assets/sprites/Warrior_Run.png"
+dest_files=["res://.godot/imported/Warrior_Run.png-28acd853461f131a01d6c6f9e8090ca0.ctex"]
 
 [params]
 

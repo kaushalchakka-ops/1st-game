@@ -70,8 +70,7 @@ func hit_player():
 
 	for body in attack_area.get_overlapping_bodies():
 			if body.is_in_group("player"):
-				body.respawn()
-
+				body.player_damage()
 # ------------------ RESET AFTER ATTACK ------------------
 func _on_attack_timer_timeout():
 	is_attacking = false

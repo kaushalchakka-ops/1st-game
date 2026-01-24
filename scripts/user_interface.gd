@@ -3,8 +3,8 @@ extends Control
 # References to your containers from your scene tree
 @onready var main_menu_container = $CenterContainer
 @onready var level_select_container = $CenterContainer2
-const STORY_START_POS = Vector2.ZERO
-const PARKOUR_START_POS = Vector2(2264, -287)
+const STORY_START_POS = Vector2(-478,-97)
+const PARKOUR_START_POS = Vector2(2300, -287)
 func _ready():
 	# Start with only the main menu visible
 	main_menu_container.show()
