@@ -2721,7 +2721,7 @@ shape = SubResource("RectangleShape2D_boyg6")
 position = Vector2(1045, -2745)
 
 [node name="chapter_2" parent="." instance=ExtResource("24_f1jbl")]
-position = Vector2(2091, -27)
+position = Vector2(2106, -73)
 
 [node name="SectionCheckpoint" type="Area2D" parent="."]
 position = Vector2(-43, -18)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyei28p0ek47y"
-path="res://.godot/imported/Lancer_Run.png-b4724b20b7d82034a41f91a4ba41d751.ctex"
+uid="uid://b10prar468ef"
+path="res://.godot/imported/Orc-Hurt.png-9244a0dc6130de8550780064ecf5c33b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Lancer_Run.png"
-dest_files=["res://.godot/imported/Lancer_Run.png-b4724b20b7d82034a41f91a4ba41d751.ctex"]
+source_file="res://assets/sprites/Orc-Hurt.png"
+dest_files=["res://.godot/imported/Orc-Hurt.png-9244a0dc6130de8550780064ecf5c33b.ctex"]
 
 [params]
 

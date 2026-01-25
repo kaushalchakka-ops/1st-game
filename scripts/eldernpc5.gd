@@ -27,17 +27,19 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 	bubble.hide()
 
+
 func _input(_event):
 	# Check for interaction regardless of whether an enemy is alive
 	if Input.is_action_just_pressed("interact") and player_in_range:
 		speak()
+
 func speak():
 		label.text = "
-		Hero, your blade is too short. Take this spear for better reach!Your character have been upggraded"
+		Hero, now you can switch between character. Number keys are used to switch between characters"
 		
 		# Typewriter effect
 		label.visible_characters = 0
 		var tween = create_tween()
 		tween.tween_property(label, "visible_characters", label.text.length(), 1.0)
 		if player_ref:
-			player_ref.transform_to_spearman()
+			player_ref.enable_switch()
