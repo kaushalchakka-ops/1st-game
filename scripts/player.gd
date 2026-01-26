@@ -30,16 +30,18 @@ func play_anim(anim: String):
 	$AnimatedSprite2D.play(form  + anim)
 
 func transform_to_spearman():
+	Audiocontroller.play_transform()
 	form = "Spearman"
 	is_spearman=true
 	play_anim("idle")
 	collision_shape_2d.scale=Vector2(3,1)
-
 func transform_to_defender():
+	Audiocontroller.play_transform()
 	form="Defender"
 	is_defender=true
 	$AttackArea/CollisionShape2D.scale = Vector2(1, 1)
 func transform_to_archer():
+	Audiocontroller.play_transform()
 	form="Archer"
 	is_archer=true
 	$AttackArea/CollisionShape2D.scale = Vector2(0.1, 0.1)
@@ -57,7 +59,8 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
-		return 
+		return
+	#Audiocontroller.play_music()
 	if(form==""):
 		animated_sprite_2d.scale = Vector2(1,1)
 	if is_switch==true:
@@ -109,18 +112,22 @@ func handle_movement():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY 
 		if(form=="Spearman"):
+			Audiocontroller.play_jump()
 			animated_sprite_2d.scale = Vector2(0.25, 0.25)
 			animated_sprite_2d.position=Vector2(0,-21)
 			animated_sprite_2d.play(form+"idle")
 		if(form=="Defender"):
+			Audiocontroller.play_jump()
 			animated_sprite_2d.scale=Vector2(0.25,0.25)
 			animated_sprite_2d.position=Vector2(0,-9)
 			animated_sprite_2d.play(form+"idle")
 		if(form=="Archer"):
+			Audiocontroller.play_jump()
 			animated_sprite_2d.scale=Vector2(0.25,0.25)
 			animated_sprite_2d.position=Vector2(0,-9)
 			animated_sprite_2d.play(form+"idle")
 		else:
+			Audiocontroller.play_jump()
 			animated_sprite_2d.play("jump")
 	var direction := Input.get_axis("left", "right") 
 
@@ -173,7 +180,6 @@ func handle_movement():
 	# Physics (Ice / Wind / Friction)
 	var accel = 4.0 if is_on_ice else 20.0
 	var friction = 2.0 if (is_on_ice or is_in_wind) else SPEED
-	
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * SPEED, accel)
 	else:

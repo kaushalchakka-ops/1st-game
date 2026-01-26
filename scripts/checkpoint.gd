@@ -29,6 +29,7 @@ func activate_lever():
 	# Visual feedback: switch lever to "on" position
 	if animated_sprite.sprite_frames.has_animation("on"):
 		animated_sprite.play("on")
+		Audiocontroller.play_checkpoint()
 		#	  animated_sprite.pause()
 	# --- SAVE THE CHECKPOINT ---
 	CheckpointManager.set_checkpoint(global_position)

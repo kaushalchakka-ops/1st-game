@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bjumxwun7n5gn"
+path="res://.godot/imported/Retro Success Melody 02 - choir soprano.wav-893558ba6c07b4ca54c9b94421f2075a.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Retro Success Melody 02 - choir soprano.wav"
+dest_files=["res://.godot/imported/Retro Success Melody 02 - choir soprano.wav-893558ba6c07b4ca54c9b94421f2075a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

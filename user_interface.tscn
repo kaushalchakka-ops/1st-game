@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://crdf1twiunjv8"]
+[gd_scene load_steps=9 format=3 uid="uid://crdf1twiunjv8"]
 
 [ext_resource type="Script" uid="uid://bde0kkrleabku" path="res://scripts/user_interface.gd" id="1_i7dvk"]
+[ext_resource type="Texture2D" uid="uid://cubmrsa0ijn7e" path="res://assets/sprites/WhatsApp Image 2026-01-26 at 11.42.09 AM.jpeg" id="2_0jl8t"]
 [ext_resource type="FontFile" uid="uid://crft7xjpq21ha" path="res://assets/fonts/PixelOperator8.ttf" id="2_juc2q"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_up53h"]
+texture = ExtResource("2_0jl8t")
+modulate_color = Color(0.31801978, 0.3180198, 0.31801972, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7dvk"]
-bg_color = Color(0.36692932, 0.00095356646, 0.94033456, 1)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -17,6 +22,8 @@ expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
+shadow_size = 5
+shadow_offset = Vector2(0, 3.14)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_juc2q"]
 bg_color = Color(0.52019286, 0.45373815, 1, 1)
@@ -30,7 +37,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jl8t"]
-bg_color = Color(0.36862746, 0, 0.9411765, 1)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -39,6 +46,8 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up53h"]
 bg_color = Color(0.52156866, 0.45490196, 1, 1)
@@ -60,14 +69,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i7dvk")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = 1.0
+offset_right = -7.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_up53h")
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -83,6 +96,7 @@ layout_mode = 2
 
 [node name="Button3" type="Button" parent="CenterContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_juc2q")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i7dvk")
@@ -91,6 +105,7 @@ text = " Parkour mode"
 
 [node name="Button4" type="Button" parent="CenterContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_juc2q")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_0jl8t")
@@ -110,6 +125,7 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_juc2q")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_i7dvk")
@@ -118,6 +134,7 @@ text = " Start Game "
 
 [node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_juc2q")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_0jl8t")

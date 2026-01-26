@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://chah551sod0db" path="res://assets/sprites/Lancer_Runb.png" id="8_ivps1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1jxqw"]
-radius = 5.0
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cy2ki"]
 atlas = ExtResource("2_urp6f")
@@ -779,22 +779,18 @@ script = ExtResource("1_onrkg")
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_1jxqw")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["collision"]]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_1jxqw")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.0000004, -11)
+position = Vector2(1.0000001, -11)
 scale = Vector2(1.0070311, 0.9551145)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"Archerattack"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(13, -4)
+position = Vector2(12, -3)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Hearts0" type="Sprite2D" parent="."]
