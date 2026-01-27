@@ -3,11 +3,10 @@ extends Area2D
 @onready var timer: Timer = $Timer
 var checkpoint_manager
 var player
-@onready var gamemanager: Node2D = %gamemanager
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	checkpoint_manager = get_parent().get_node("checkpointmanager")
-	player=get_parent().get_node("player")
+#func _ready() -> void:
+	##checkpoint_manager = get_parent().get_node("checkpointmanager")
+	##player=get_node("player")
 
 #func _on_timer_timeout() -> void:
 	#Engine.time_scale =1.0

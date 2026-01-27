@@ -14,13 +14,14 @@ func _ready():
 
 
 func _on_button_3_pressed() -> void:
-	CheckpointManager.checkpoint_position = STORY_START_POS
-	get_tree().change_scene_to_file("res://game.tscn")
-
+	get_viewport().gui_release_focus()
+	CheckpointManager.checkpoint_position = STORY_START_POS 
+	get_tree().change_scene_to_file("res://game.tscn") 
 
 func _on_button_4_pressed() -> void:
+	get_viewport().gui_release_focus()
 	CheckpointManager.checkpoint_position = PARKOUR_START_POS
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file("res://game.tscn") 
 
 
 func _on_button_pressed() -> void:

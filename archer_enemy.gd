@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var attack_range = 300.0
 @export var shoot_cooldown = 5.0
-@export var arrow_scene = preload("res://enemy_arrow.tscn") # Create this in Step 2
+@export var arrow_scene = load("res://enemy_arrow.tscn") # Create this in Step 2
 
 var can_shoot = true
 

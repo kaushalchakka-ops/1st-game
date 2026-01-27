@@ -8,8 +8,8 @@ var player_in_range = false
 
 func _ready():
 	# Standard signal connections for the Area2D
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
+	#body_entered.connect(_on_body_entered)
+	#body_exited.connect(_on_body_exited)
 	bubble.hide()
 
 func _on_body_entered(body):

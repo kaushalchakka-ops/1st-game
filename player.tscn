@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://hcd38ogr0in4" path="res://assets/sprites/Warrior_Run.png" id="3_dw050"]
 [ext_resource type="Texture2D" uid="uid://syt5o7ys8bee" path="res://assets/sprites/Warrior_Guard.png" id="3_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://b1eup5xtcirbi" path="res://assets/sprites/Archer_Run.png" id="4_606se"]
-[ext_resource type="Texture2D" uid="uid://b4lq7sl2asn43" path="res://assets/sprites/items_.png" id="6_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://b4lq7sl2asn43" path="res://assets/items_.png" id="6_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://wmwmt3odh6g7" path="res://assets/sprites/Lancer_Right_Attackb.png" id="6_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://w8vf5wnyxd8c" path="res://assets/sprites/Lancer_Idleb.png" id="7_nvl01"]
 [ext_resource type="Texture2D" uid="uid://chah551sod0db" path="res://assets/sprites/Lancer_Runb.png" id="8_ivps1"]
@@ -779,11 +779,15 @@ script = ExtResource("1_onrkg")
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_1jxqw")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["collision"]]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_1jxqw")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.0000001, -11)
 scale = Vector2(1.0070311, 0.9551145)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"jump"
+animation = &"Spearmanidle"
 autoplay = "idle"
 
 [node name="AttackArea" type="Area2D" parent="."]

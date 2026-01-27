@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-signal enemy_defeated  # This tells the game an enemy died
-
 var health = 3
 @onready var sprite = $AnimatedSprite2D
 

@@ -5,7 +5,6 @@ var player_in_range = false
 var is_active = false # To check if we already pulled the lever
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var label = $Label
 
 func _ready():
 	# Start with the "off" animation
@@ -13,7 +12,7 @@ func _ready():
 		#animated_sprite.play("off")
 	#
 	# Connect signals using code (or you can do it via the Node tab)
-	body_entered.connect(_on_body_entered)
+	#body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
 func _input(event):
@@ -29,7 +28,7 @@ func activate_lever():
 	# Visual feedback: switch lever to "on" position
 	if animated_sprite.sprite_frames.has_animation("on"):
 		animated_sprite.play("on")
-		Audiocontroller.play_checkpoint()
+		#Audiocontroller.play_checkpoint()
 		#	  animated_sprite.pause()
 	# --- SAVE THE CHECKPOINT ---
 	CheckpointManager.set_checkpoint(global_position)

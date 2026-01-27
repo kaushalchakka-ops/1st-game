@@ -16,7 +16,7 @@ var is_on_ice := false
 var is_swinging := false
 var is_defending=false
 var start_position: Vector2
-var arrow_scene = preload("res://Arrow.tscn")
+var arrow_scene = preload("res://arrow.tscn")
 # --- NODES ---
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var attack_area: Area2D = $AttackArea 
@@ -28,22 +28,34 @@ var is_defender=false
 var is_archer=false
 func play_anim(anim: String):
 	$AnimatedSprite2D.play(form  + anim)
+func reset_forms():
+		is_spearman = false
+		is_defender = false
+		is_archer = false
 
 func transform_to_spearman():
-	Audiocontroller.play_transform()
+	#Audiocontroller.play_transform()
+	reset_forms()
 	form = "Spearman"
 	is_spearman=true
-	play_anim("idle")
+	animated_sprite_2d.play("Spearmanidle")
 	collision_shape_2d.scale=Vector2(3,1)
 func transform_to_defender():
-	Audiocontroller.play_transform()
+	#Audiocontroller.play_transform()
+	reset_forms()
 	form="Defender"
 	is_defender=true
+	animated_sprite_2d.play("Defenderidle")
 	$AttackArea/CollisionShape2D.scale = Vector2(1, 1)
 func transform_to_archer():
-	Audiocontroller.play_transform()
+	#Audiocontroller.play_transform()
+	reset_forms()
 	form="Archer"
 	is_archer=true
+	animated_sprite_2d.stop()
+	await get_tree().process_frame
+	animated_sprite_2d.play("Archeridle")
+	animated_sprite_2d.play("Archeridle")
 	$AttackArea/CollisionShape2D.scale = Vector2(0.1, 0.1)
 func transform_to_normal():
 	form = ""
@@ -64,15 +76,18 @@ func _physics_process(delta: float) -> void:
 	if(form==""):
 		animated_sprite_2d.scale = Vector2(1,1)
 	if is_switch==true:
+		is_spearman=true
+		is_defender=true
+		is_archer=true
 		if Input.is_action_just_pressed("1"):
 			if is_spearman==true:
-				form="Spearman"
+				transform_to_spearman()
 		if Input.is_action_just_pressed("2"):
 			if is_defender==true:
-				form="Defender"
+				transform_to_defender()
 		if Input.is_action_just_pressed("3"):
 			if is_archer==true:
-				form="Archer"
+				transform_to_archer()
 	# --- MANUAL RESPAWN ---
 	if Input.is_action_just_pressed("respawn"):
 		respawn()
@@ -112,22 +127,22 @@ func handle_movement():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY 
 		if(form=="Spearman"):
-			Audiocontroller.play_jump()
+			#Audiocontroller.play_jump()
 			animated_sprite_2d.scale = Vector2(0.25, 0.25)
 			animated_sprite_2d.position=Vector2(0,-21)
 			animated_sprite_2d.play(form+"idle")
 		if(form=="Defender"):
-			Audiocontroller.play_jump()
+			#Audiocontroller.play_jump()
 			animated_sprite_2d.scale=Vector2(0.25,0.25)
 			animated_sprite_2d.position=Vector2(0,-9)
 			animated_sprite_2d.play(form+"idle")
 		if(form=="Archer"):
-			Audiocontroller.play_jump()
+			#Audiocontroller.play_jump()
 			animated_sprite_2d.scale=Vector2(0.25,0.25)
 			animated_sprite_2d.position=Vector2(0,-9)
 			animated_sprite_2d.play(form+"idle")
 		else:
-			Audiocontroller.play_jump()
+			#Audiocontroller.play_jump()
 			animated_sprite_2d.play("jump")
 	var direction := Input.get_axis("left", "right") 
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dt77ecn44oo3i"]
 
-[ext_resource type="Script" uid="uid://cjhslu8tnm3nt" path="res://scripts/audiocontroller.gd" id="1_gae2k"]
+[ext_resource type="Script" uid="uid://cjhslu8tnm3nt" path="res://audiocontroller.gd" id="1_gae2k"]
 [ext_resource type="AudioStream" uid="uid://j1vglhukj2cw" path="res://assets/sounds/Retro Music Loop - PV8 - NES Style 01.wav" id="2_m7cy2"]
 [ext_resource type="AudioStream" uid="uid://ki1jsyxr0okx" path="res://assets/sounds/Retro Jump Classic 08.wav" id="3_m7cy2"]
 [ext_resource type="AudioStream" uid="uid://nbgf1tqpi7uj" path="res://assets/sounds/Retro Event 49.wav" id="4_e4qns"]

@@ -1,7 +1,5 @@
 extends Area2D
 
-signal spearman_unlocked
-
 @onready var bubble = $PanelContainer
 @onready var label = $PanelContainer/Label
 var player_in_range = false
@@ -23,8 +21,8 @@ func _on_body_exited(body):
 	bubble.hide()
 func _ready():
 	# Standard signal connections for the Area2D
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
+	#body_entered.connect(_on_body_entered)
+	#body_exited.connect(_on_body_exited)
 	bubble.hide()
 
 
